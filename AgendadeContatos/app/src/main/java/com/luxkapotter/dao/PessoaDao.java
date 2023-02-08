@@ -79,4 +79,19 @@ public class PessoaDao extends SQLiteOpenHelper {
 
         return listPessoas;
     }
+
+    public long alterarPessoa(Pessoa p){
+        ContentValues values = new ContentValues();
+        long retornoDb;
+
+        values.put(NOME, p.getNome());
+        values.put(IDADE, p.getIdade());
+        values.put(ENDERECO, p.getEndereco());
+        values.put(TELEFONE, p.getTelefone());
+
+        String[] args = {String.valueOf(p.getId())};
+        retornoDb = getWritableDatabase().update(TABELA, values, "id=?", args);
+
+        return retornoDb;
+    }
 }

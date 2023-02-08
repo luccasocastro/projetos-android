@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -35,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, FormPessoa.class);
+                startActivity(i);
+            }
+        });
+
+        listaVisivel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Pessoa pessoaEnviada = (Pessoa) adapterPessoa.getItem(position);
+
+                Intent i = new Intent(MainActivity.this, FormPessoa.class);
+                i.putExtra("pessoa-enviada", pessoaEnviada);
                 startActivity(i);
             }
         });

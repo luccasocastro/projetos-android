@@ -28,7 +28,7 @@ public class FormPessoa extends AppCompatActivity {
         setContentView(R.layout.activity_form_pessoa);
 
         Intent i = getIntent();
-        altPessoa = (Pessoa) i.getSerializableExtra("Pessoa Enviada");
+        altPessoa = (Pessoa) i.getSerializableExtra("pessoa-enviada");
         pessoa = new Pessoa();
         pessoaDao = new PessoaDao(FormPessoa.this);
 
@@ -40,6 +40,12 @@ public class FormPessoa extends AppCompatActivity {
 
         if(altPessoa != null){
             btnVariavel.setText("Alterar");
+            editNome.setText(altPessoa.getNome());
+            editIdade.setText(altPessoa.getIdade()+"");
+            editEndereco.setText(altPessoa.getEndereco());
+            editTelefone.setText(altPessoa.getTelefone());
+
+            pessoa.setId(altPessoa.getId());
         }else{
             btnVariavel.setText("Salvar");
         }
@@ -47,6 +53,7 @@ public class FormPessoa extends AppCompatActivity {
         btnVariavel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pessoa.setId(altPessoa.getId());
                 pessoa.setNome(editNome.getText().toString());
                 pessoa.setIdade(Integer.parseInt(editIdade.getText().toString()));
                 pessoa.setEndereco(editEndereco.getText().toString());
@@ -54,13 +61,20 @@ public class FormPessoa extends AppCompatActivity {
 
                 if(btnVariavel.getText().toString().equals("Salvar")){
                     retornoDb = pessoaDao.salvarPessoa(pessoa);
+                    pessoaDao.close();
                     if(retornoDb == -1){
                         alert("Erro ao cadastrar!");
                     }else{
                         alert("Cadastro realizado com sucesso!");
                     }
                 }else{
-
+                    retornoDb = pessoaDao.alterarPessoa(pessoa);
+                    pessoaDao.close();
+                    if(retornoDb == -1){
+                        alert("Erro ao atualizar contato!");
+                    }else{
+                        alert("Contato atualizado com sucesso!");
+                    }
                 }
                 finish();
             }
