@@ -2,12 +2,15 @@ package com.luxkapotter.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import com.luxkapotter.modelo.Pessoa;
+
+import java.util.ArrayList;
 
 public class PessoaDao extends SQLiteOpenHelper {
 
@@ -53,5 +56,27 @@ public class PessoaDao extends SQLiteOpenHelper {
         retornoDb = getWritableDatabase().insert(TABELA, null, values);
 
         return retornoDb;
+    }
+    public ArrayList<Pessoa> selectPessoas(){
+
+        String[] colunas = {ID, NOME, IDADE, ENDERECO, TELEFONE};
+
+        Cursor cursor = getWritableDatabase().query(TABELA,colunas,null,null,null,null,null);
+
+        ArrayList<Pessoa> listPessoas = new ArrayList<Pessoa>();
+
+        while(cursor.moveToNext()){
+            Pessoa p = new Pessoa();
+
+            p.setId(cursor.getInt(0));
+            p.setNome(cursor.getString(1));
+            p.setIdade(cursor.getInt(2));
+            p.setEndereco(cursor.getString(3));
+            p.setTelefone(cursor.getString(4));
+
+            listPessoas.add(p);
+        }
+
+        return listPessoas;
     }
 }
