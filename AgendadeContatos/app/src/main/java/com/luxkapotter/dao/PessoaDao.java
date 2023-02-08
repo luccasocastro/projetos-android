@@ -94,4 +94,13 @@ public class PessoaDao extends SQLiteOpenHelper {
 
         return retornoDb;
     }
+
+    public long deletarPessoa(Pessoa p){
+        long retornoDb;
+
+        String[] args = {String.valueOf(p.getId())};
+        retornoDb = getWritableDatabase().delete(TABELA,ID+"=?", args);
+
+        return retornoDb;
+    }
 }
