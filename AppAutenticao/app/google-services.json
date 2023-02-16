@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "373814635068",
+    "project_id": "app-autenticacao-45096",
+    "storage_bucket": "app-autenticacao-45096.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373814635068:android:ede3918b1916f13aa47139",
+        "android_client_info": {
+          "package_name": "com.luxkapotter.appautenticacao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373814635068-1j8pfp5a0iab847f71b2ggk7a7o33k57.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luxkapotter.appautenticacao",
+            "certificate_hash": "3a8e7a0e2c003fbb27266b04ab2cb1a2c4b779ba"
+          }
+        },
+        {
+          "client_id": "373814635068-s21ais0ff6njku5tl9asb8obrfnij71h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvTvYYbCy82GHyMCoxiRwvP_QCpC0TJes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373814635068-s21ais0ff6njku5tl9asb8obrfnij71h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
